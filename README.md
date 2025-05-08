@@ -1,6 +1,10 @@
-# StructuralDirective
+# Angular Template Driven Forms Validations
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
+
+## Link to the youtube video
+
+[Youtube Video](https://youtu.be/tLojH3gpl40?si=yWJVnS0y0tTRi1gx)
 
 ## Development server
 
