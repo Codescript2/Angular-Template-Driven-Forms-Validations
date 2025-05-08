@@ -7,8 +7,18 @@
       id="name"
       placeholder="Name"
       [(ngModel)]="user.name"
-      [ngModelOptions]="{name: 'name', updateOn: 'submit', standalone: true}"
+      [ngModelOptions]="{name: 'name', updateOn: 'change', standalone: false}"
+      #nameControl="ngModel"
+      required
+      minlength="3"
       >
+      @if(nameControl.touched && nameControl.hasError('required')) {
+        <div class="text-error">This field is required</div>
+      }
+      @if(nameControl.touched && nameControl.hasError('minlength')) {
+        @let minLengthError = nameControl.getError('minlength');
+        <div class="text-error">The required length for this field is <strong>{{minLengthError.requiredLength}}</strong></div>
+      }
   </div>
   <div class="form-control">
     <label for="last-name">Last Name</label>
@@ -16,9 +26,14 @@
       type="text"
       id="last-name"
       placeholder="Last Name"
+      #lastNameControl="ngModel"
       [(ngModel)]="user.lastName"
       [ngModelOptions]="{name: 'last-name', updateOn: 'change'}"
+      bannedWordValidator="Doe"
       >
+      @if(lastNameControl.touched && lastNameControl.hasError('bannedWordValidator')) {
+        <div class="text-error">this word is banned from this field: <strong>{{lastNameControl.getError('bannedWordValidator')}}</strong></div>
+      }
   </div>
   <button>Send</button>
 </form>
